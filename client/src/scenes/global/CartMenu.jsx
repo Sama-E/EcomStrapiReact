@@ -85,6 +85,8 @@ const CartMenu = () => {
                       </IconButton>
                     </FlexBox>
                     <Typography>{item.attributes.shortDescription}</Typography>
+                    
+                    {/* AMOUNT */}
                     <FlexBox m="15px 0">
                       <Box
                         display="flex"
