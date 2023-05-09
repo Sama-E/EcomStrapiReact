@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { IconButton, Box, Typography, useTheme, Button } from '@mui/material';
-import AddIcon from '@mui/material/Add';
-import RemoveIcon from '@maui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 import { shades } from "../theme";
 import { addToCart } from "../state";
@@ -30,9 +30,9 @@ const Item = ({ item, width}) => {
       attributes: {
         formats: {
           medium: { url },
-        }
-      }
-    }
+        },
+      },
+    },
   } = image;
 
   return (
@@ -45,13 +45,14 @@ const Item = ({ item, width}) => {
           alt={item.name}
           width="300px"
           height="400px"
-          src={`http://localhost:1337/${url}`}
+          src={`http://localhost:1337${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
           style={{ cursor: 'pointer'}}
         />
         <Box
-          display={isHovered ? "blocked" : "none"}
+          display={isHovered ? "block" : "none"}
           position="absolute"
+          bottom="10%"
           left="0"
           width="100%"
           padding="0 5%"

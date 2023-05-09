@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "./scenes/home/Home";
 import NavBar from "./scenes/global/NavBar";
+import CartMenu from "./scenes/global/CartMenu";
+import Footer from "./scenes/global/Footer";
 import ItemDetails from "./scenes/item/ItemDetails";
 import Checkout from "./scenes/checkout/Checkout";
 import Confirmation from "./scenes/checkout/Confirmation";
@@ -30,7 +32,8 @@ function App() {
           <Route path="checkout" element={<Checkout />} />
           <Route path="checkout/success" element={<Confirmation />} />
         </Routes>
-
+        <CartMenu />
+        <Footer />
       </BrowserRouter>
 
     </div>
