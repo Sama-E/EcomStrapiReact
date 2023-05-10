@@ -9,7 +9,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { shades } from "../theme";
 import { addToCart } from "../state";
 
-const Item = ({ item, width}) => {
+const Item = ({ item, width }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -72,7 +72,7 @@ const Item = ({ item, width}) => {
               >
                 <RemoveIcon />
               </IconButton>
-              <Typography color={shades.primary[300]}>{item.count}</Typography>
+              <Typography color={shades.primary[300]}>{count}</Typography>
               <IconButton
                 onClick={() =>
                   setCount(count + 1)
