@@ -1,47 +1,40 @@
-import { useMediaQuery, TextField, Box } from "@mui/material";
 import { getIn } from "formik";
+import { Box } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-const AddressForm = (
+const AddressForm = ({
   type,
   values,
-  errors,
   touched,
+  errors,
   handleBlur,
   handleChange,
-) => {
+}) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
+  // these functions allow for better code readability
   const formattedName = (field) => `${type}.${field}`;
 
-  //Check for error
-  //Check if formattedName field is touched(filled) and 
-  //has errors - both conditions need to be true to display errors
-  //Formik's getIn function grabs the needed fields
   const formattedError = (field) =>
     Boolean(
       getIn(touched, formattedName(field)) &&
-      getIn(errors, formattedError(field))
+        getIn(errors, formattedName(field))
     );
 
-  //Showing the text error
   const formattedHelper = (field) =>
-    getIn(touched, formattedName(field)) &&
-    getIn(errors, formattedError(field));
-
+    getIn(touched, formattedName(field)) && getIn(errors, formattedName(field));
 
   return (
-    //Display errors in a grid
-    //sx to target child divs in grid if its on Mobile screen span 4
     <Box
       display="grid"
       gap="15px"
       gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-      sx = {{
-        "& > div" : { gridColumn: isNonMobile ? undefined : "span 4" }
+      sx={{
+        "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
       }}
     >
-      {/* FIRST NAME */}
-      <TextField 
+      <TextField
         fullWidth
         type="text"
         label="First Name"
@@ -53,9 +46,7 @@ const AddressForm = (
         helperText={formattedHelper("firstName")}
         sx={{ gridColumn: "span 2" }}
       />
-
-      {/* LAST NAME */}
-      <TextField 
+      <TextField
         fullWidth
         type="text"
         label="Last Name"
@@ -67,9 +58,7 @@ const AddressForm = (
         helperText={formattedHelper("lastName")}
         sx={{ gridColumn: "span 2" }}
       />
-
-      {/* COUNTRY */}
-      <TextField 
+      <TextField
         fullWidth
         type="text"
         label="Country"
@@ -81,9 +70,7 @@ const AddressForm = (
         helperText={formattedHelper("country")}
         sx={{ gridColumn: "span 4" }}
       />
-
-      {/* STREET ADDRESS 1 */}
-      <TextField 
+      <TextField
         fullWidth
         type="text"
         label="Street Address"
@@ -95,12 +82,10 @@ const AddressForm = (
         helperText={formattedHelper("street1")}
         sx={{ gridColumn: "span 2" }}
       />
-
-      {/* STREET ADDRESS 2 */}
-      <TextField 
+      <TextField
         fullWidth
         type="text"
-        label="Street Address (Optional)"
+        label="Street Address 2 (optional)"
         onBlur={handleBlur}
         onChange={handleChange}
         value={values.street2}
@@ -109,9 +94,7 @@ const AddressForm = (
         helperText={formattedHelper("street2")}
         sx={{ gridColumn: "span 2" }}
       />
-
-      {/* CITY */}
-      <TextField 
+      <TextField
         fullWidth
         type="text"
         label="City"
@@ -123,9 +106,7 @@ const AddressForm = (
         helperText={formattedHelper("city")}
         sx={{ gridColumn: "span 2" }}
       />
-
-      {/* STATE */}
-      <TextField 
+      <TextField
         fullWidth
         type="text"
         label="State"
@@ -137,9 +118,7 @@ const AddressForm = (
         helperText={formattedHelper("state")}
         sx={{ gridColumn: "1fr" }}
       />
-
-      {/* ZIP CODE */}
-      <TextField 
+      <TextField
         fullWidth
         type="text"
         label="Zip Code"
@@ -152,7 +131,7 @@ const AddressForm = (
         sx={{ gridColumn: "1fr" }}
       />
     </Box>
-  )
-}
+  );
+};
 
 export default AddressForm;

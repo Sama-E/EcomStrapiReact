@@ -51,8 +51,8 @@ const ItemDetails = () => {
 
   useEffect(() => {
     getItem();
-    getItems();
-  }, [itemId]); //estlint-diable-line react-hooks/exhaustive-deps
+    getItems(); // eslint-disable-next-line
+  }, [itemId]);
 
 
 

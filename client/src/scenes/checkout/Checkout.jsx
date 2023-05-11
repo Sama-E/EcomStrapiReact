@@ -108,7 +108,7 @@ const Checkout = () => {
         actions.setFieldValue("shippingAddress", {
           ...values.billingAddress,
           isSameAddress: true,
-        })
+        });
       }
 
       if (isSecondStep){
@@ -131,16 +131,16 @@ const Checkout = () => {
 
       //Orders model in Strapi
       const response = await fetch("http://localhost:1337/api/orders", {
-        methods: "POST",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify(requestBody)
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
       });
 
       //Redirect to checkout -> backend logic for Stripe in server/src/api/orders/controllers/order
       const session = await response.json();
       await stripe.redirectToCheckout({
         sessionId: session.id,
-      })
+      });
     }
 
     return (
@@ -183,19 +183,19 @@ const Checkout = () => {
                     )}
                     {isSecondStep && (
                       <Payment
-                      values = {values}
-                      errors = {errors}
-                      touched = {touched}
-                      handleBlur = {handleBlur}
-                      handleChange = {handleChange}
-                      handleSubmit = {handleSubmit}
-                      setFieldValue = {setFieldValue}
+                        values = {values}
+                        errors = {errors}
+                        touched = {touched}
+                        handleBlur = {handleBlur}
+                        handleChange = {handleChange}
+                        handleSubmit = {handleSubmit}
+                        setFieldValue = {setFieldValue}
                       />
                     )}
                     {/* BUTTONS */}
                     <Box display="flex" justifyContent="space-between" gap="50px">
                       {isSecondStep && (
-                        <button 
+                        <Button 
                           fullWidth
                           type="submit"
                           color="primary"
@@ -210,9 +210,9 @@ const Checkout = () => {
                           onClick={() => setActiveStep(activeStep - 1)}
                         >
                           Back
-                        </button>
+                        </Button>
                       )}
-                      <button 
+                      <Button 
                         fullWidth
                         type="submit"
                         color="primary"
@@ -224,10 +224,9 @@ const Checkout = () => {
                           borderRadius: 0,
                           padding: "15px 40px",
                         }}
-                        onClick={() => setActiveStep(activeStep - 1)}
                       >
-                        {isFirstStep ? "Next" : "Place Order"}
-                      </button>
+                        {isSecondStep ? "Next" : "Place Order"}
+                      </Button>
                     </Box>
                   </form>
                 )}
