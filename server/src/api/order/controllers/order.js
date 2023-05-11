@@ -29,7 +29,7 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
               product_data: {
                 name: item.name
               },
-              unit_amount: item.prive * 100,
+              unit_amount: item.price * 100,
             },
             quantity: product.count,
           }
@@ -43,13 +43,13 @@ module.exports = createCoreController('api::order.order', ({ strapi }) => ({
         mode: "payment",
         success_url: "http://localhost:3000/checkout/success",
         cancel_url: "http://localhost:3000",
-        line_items: lineItems
+        line_items: lineItems,
       });
 
       //Create the item order in backend(Strapi)
-      await strapi.service("api::order.order").create({
-        data: { userName, products, stripeSessionId: session.id },
-      });
+      await strapi
+        .service("api::order.order")
+        .create({ data: { userName, products, stripeSessionId: session.id } });
 
       //Return the session id
       return { id: session.id }

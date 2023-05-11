@@ -126,7 +126,7 @@ const Checkout = () => {
         products: cart.map(({ id, count }) => ({
           id,
           count,
-        }))
+        })),
       };
 
       //Orders model in Strapi
